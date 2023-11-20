@@ -8,4 +8,5 @@ struct video{
 void write(struct video *arr, int n);
 void read(struct video **arr, int *n);
 int create(struct video **arr, int *n);
-void search(struct video *arr, int n, char str[40]);
+void search(struct video *arr, int n, int mode);
+int check(int *a);

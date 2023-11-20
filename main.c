@@ -12,13 +12,13 @@ int main(){
 		int key=0;
 		printf("attemp %d\n", i);
 		i=i+1;
-		printf("1-create, 2-read, 3-print, 4-search by name, 5-quit\n");
+		printf("1-create, 2-read, 3-print, 4-search, 5-quit\n");
 		printf("key=");
 		scanf("%d", &key);
 		switch(key){
 			case 1:
 				int b = create(&arr, &n);
-				if(arr && b!=0)
+				if(arr && b)
 					write(arr,n);
 				else{
 					printf("syntaxis error\n");
@@ -40,11 +40,12 @@ int main(){
 				read(&arr, &n);
 				if(!arr) printf("read error");
 				else{
-					char str[40];
-					printf("name=");
-					scanf("%41s", str);
-					while(getchar()!='\n');
-					search(arr, n, str);
+					printf("search by...\n");
+					printf("1-name, 2-views, 3-likes, 4-dislikes\n");
+					int mode;
+					printf("mode=");
+					if(!check(&mode)) break;
+					search(arr, n, mode);
 				}
 				break;
 			case 5:

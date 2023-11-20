@@ -4,7 +4,7 @@
 #include <string.h>
 
 int check(int *a){
-	if(scanf("%u", a) ==1){
+	if(scanf("%d", a) ==1){
 		if(*a <0){
 			return 0;
 		}
@@ -72,10 +72,57 @@ int create(struct video **arr, int *n){
 }
 
 
-void search(struct video *arr, int n, char str[40]){
-	for(int i=0; i<n; i++){
-		if(!strcmp(arr[i].name, str)){
-			printf("%s %d %d %d\n", arr[i].name, arr[i].views, arr[i].likes, arr[i].dislikes);
-		}
+void search(struct video *arr, int n, int mode){
+	int mn;
+	int mx;
+	switch(mode){
+		case 1:
+			char str[40];
+			printf("name=");
+			scanf("%41s", str);
+			while(getchar() != '\n');
+			for(int i=0; i<n; i++){
+				if(!strcmp(arr[i].name, str)){
+					printf("%s %d %d %d\n", arr[i].name, arr[i].views, arr[i].likes, arr[i].dislikes);
+				}
+			}
+			break;
+		case 2:
+			printf("enter min value\n");
+			if(!check(&mn)) return;
+			printf("enter max value\n");
+			if(!check(&mx)) return;
+			for(int i=0; i<n;i++){
+				//printf("%d %d %d", mn, arr[i].views, mx);
+				if(mn <= arr[i].views && arr[i].views <= mx){
+					printf("%s %d %d %d\n", arr[i].name, arr[i].views, arr[i].likes, arr[i].dislikes);
+				}
+			}
+			break;
+		case 3:
+                        printf("enter min value\n");
+                        if(!check(&mn)) return;
+                        printf("enter max value\n");
+                        if(!check(&mx)) return;
+                        for(int i=0; i<n;i++){
+                                if(mn<=arr[i].likes && arr[i].likes<=mx){
+                                        printf("%s %d %d %d\n", arr[i].name, arr[i].views, arr[i].likes, arr[i].dislikes);
+                                }
+                        }
+			break;
+		case 4:
+                        printf("enter min value\n");
+                        if(!check(&mn)) return;
+                        printf("enter max value\n");
+                        if(!check(&mx)) return;
+                        for(int i=0; i<n;i++){
+                                if(mn<=arr[i].dislikes && arr[i].dislikes<=mx){
+                                        printf("%s %d %d %d\n", arr[i].name, arr[i].views, arr[i].likes, arr[i].dislikes);
+                                }
+                        }
+			break;
+		default:
+			printf("syntaxis error\n");
+			return;
 	}
 }
